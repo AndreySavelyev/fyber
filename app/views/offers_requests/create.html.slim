@@ -1,0 +1,14 @@
+h1 Response
+
+
+-if @response['code'] == 'OK'
+  - if @response['message'] == 'No content'
+    h1 There arent any offers
+  - else
+    - @response["offers"].each do |offer|
+      .alert.alert-info
+        == offer
+
+- else
+  .alert.alert-danger
+    | Error

@@ -13,11 +13,6 @@ class OffersRequestsControllerTest < ActionController::TestCase
 
   def test_create
     post :create, offers_request: @request_attrs
-    assert_redirected_to offers_requests_path(response: @request_attrs)
-  end
-
-  def test_show
-    get :show
     assert_response :success
   end
 
