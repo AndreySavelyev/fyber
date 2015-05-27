@@ -7,8 +7,8 @@ class OffersRequestsController < ApplicationController
   def create
     @offers_request = params[:offers_request]
 
-    fyber_client = FyberClient.new
-    response = fyber_client.get_offers(uid: @offers_request[:uid],
+    fyber_service = FyberService.new
+    response = fyber_service.get_offers(uid: @offers_request[:uid],
                                                pub0: @offers_request[:pub0],
                                                page: @offers_request[:page])
     @response = JSON.parse(response.body)

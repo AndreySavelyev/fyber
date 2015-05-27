@@ -23,10 +23,6 @@ class FyberClient < Weary::Client
     @timestamp = Time.now.to_i
   end
 
-  def calculate_hashkey(hash)
-    Digest::SHA1.hexdigest("#{hash.to_query}&#{API_Key}")
-  end
-
   def get_offers(uid:, pub0:, page:)
     user_params = {uid: uid, pub0: pub0, page: page, timestamp: @timestamp}
     attrs = HASHKEY_PARAMS.merge(user_params)
@@ -37,6 +33,12 @@ class FyberClient < Weary::Client
     request = self.offers
     request.params attrs
     request.perform rescue nil
+  end
+
+  private
+
+  def calculate_hashkey(hash)
+    Digest::SHA1.hexdigest("#{hash.to_query}&#{API_Key}")
   end
 
 end
